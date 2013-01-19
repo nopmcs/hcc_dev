@@ -223,8 +223,11 @@ fieldset.form-fields dl dd{padding:3px 0 0 0;}
 
 
 /* AJAX LOADING INDICATOR */
-.ajax-loading-block-window{position:fixed;top:50%;left:50%;width:128px;height:128px;overflow:hidden;z-index:1104;}
-.ajax-loading-block-window .loading-image{position:absolute;top:0;left:0;width:128px;height:128px;background-image:url('images/ajax_loader_large.gif');}
+/*.ajax-loading-block-window{position:fixed;top:50%;left:50%;width:128px;height:128px;overflow:hidden;z-index:1104;}
+.ajax-loading-block-window .loading-image{position:absolute;top:0;left:0;width:128px;height:128px;background-image:url('images/ajax_loader_large.gif');}*/
+
+.ajax-loading-block-window{position:fixed;width:100%;height:100%;overflow:hidden;z-index:1104;background:#EEEEEE;right:0px;top:0px;opacity: 0.7;filter: alpha(opacity=50);}
+.ajax-loading-block-window .loading-image{position:absolute;top:40%;left:45%;width:100px;height:100px;background:url(images/loading1.gif) #F9F9F9;border:1px solid;border-radius:5px}
 .please-wait{background:url('images/ajax_loader_small.gif') no-repeat;padding-left:20px;}
 
 
