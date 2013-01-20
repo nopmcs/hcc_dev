@@ -14,9 +14,10 @@ namespace Nop.Admin
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
+            ///user: ganesha8shiva, Note: change admin route
             context.MapRoute(
                 "Admin_default",
-                "Admin/{controller}/{action}/{id}",
+                "C0nfluence@22163917/{controller}/{action}/{id}",
                 new { controller = "Home", action = "Index", area = "Admin", id = "" },
                 new[] { "Nop.Admin.Controllers" }
             );
