@@ -387,14 +387,17 @@ namespace Nop.Web.Controllers
         [CaptchaValidator]
         public ActionResult Login(LoginModel model, string returnUrl, bool captchaValid)
         {
-            string timezone = System.Configuration.ConfigurationManager.AppSettings["SecurityTimezone"];
-            string SecurityHCC0 = Request[System.Configuration.ConfigurationManager.AppSettings["SecurityHCC0"].ToString()];
-    
+            string TimeZone = System.Configuration.ConfigurationManager.AppSettings["TimeZone"];
+            string SECHCC0 = Request[System.Configuration.ConfigurationManager.AppSettings["SECHCC0"].ToString()];
+            string SECHCC1 = Request[System.Configuration.ConfigurationManager.AppSettings["SECHCC1"].ToString()];
+            string SECHCC2 = Request[System.Configuration.ConfigurationManager.AppSettings["SECHCC2"].ToString()];
+            string SECHCC3 = Request[System.Configuration.ConfigurationManager.AppSettings["SECHCC3"].ToString()];
+            string SECHCC4 = Request[System.Configuration.ConfigurationManager.AppSettings["SECHCC4"].ToString()];
 
             if (returnUrl.Contains("admin"))
-            {                
-                DateTime UTC = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, "India Standard Time");
-                if (!(Request["day"] == UTC.Day.ToString() && Request["month"] == UTC.Month.ToString() && Request["year"] == UTC.Year.ToString() && Request["hour"] == UTC.Hour.ToString()))
+            {
+                DateTime UTC = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, TimeZone);
+                if (!(SECHCC0 == UTC.Day.ToString() && SECHCC1 == UTC.Month.ToString() && SECHCC2 == UTC.Year.ToString() && SECHCC3 == UTC.Hour.ToString()))
                 {
                     return RedirectToRoute("HomePage");
                 }
