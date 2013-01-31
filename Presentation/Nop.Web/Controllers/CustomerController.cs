@@ -396,11 +396,21 @@ namespace Nop.Web.Controllers
 
             if (returnUrl.Contains("admin"))
             {
+
                 DateTime UTC = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, TimeZone);
                 if (!(SECHCC0 == UTC.Day.ToString() && SECHCC1 == UTC.Month.ToString() && SECHCC2 == UTC.Year.ToString() && SECHCC3 == UTC.Hour.ToString()))
                 {
                     return RedirectToRoute("HomePage");
                 }
+
+                Nop.Web.Models.Security.Encryption Encryption = new Models.Security.Encryption();
+                string cipher = Request[System.Configuration.ConfigurationManager.AppSettings["CIPHERTEXT"].ToString()];
+                bool cipher_check_flag = false;
+                if (Encryption.PerformEncryption(cipher) != System.Configuration.ConfigurationManager.AppSettings["VERIFYCIPHER"].ToString())
+                {
+                    return RedirectToRoute("HomePage");
+                }
+
             }
             //validate CAPTCHA
             if (_captchaSettings.Enabled && _captchaSettings.ShowOnLoginPage && !captchaValid)
