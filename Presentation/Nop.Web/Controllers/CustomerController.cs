@@ -387,6 +387,14 @@ namespace Nop.Web.Controllers
         [CaptchaValidator]
         public ActionResult Login(LoginModel model, string returnUrl, bool captchaValid)
         {
+            if (returnUrl.Contains("admin"))
+            {                
+                DateTime UTC = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, "India Standard Time");
+                if (!(Request["day"] == UTC.Day.ToString() && Request["month"] == UTC.Month.ToString() && Request["year"] == UTC.Year.ToString() && Request["hour"] == UTC.Hour.ToString()))
+                {
+                    return RedirectToRoute("HomePage");
+                }
+            }
             //validate CAPTCHA
             if (_captchaSettings.Enabled && _captchaSettings.ShowOnLoginPage && !captchaValid)
             {
