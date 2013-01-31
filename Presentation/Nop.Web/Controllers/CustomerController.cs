@@ -387,6 +387,10 @@ namespace Nop.Web.Controllers
         [CaptchaValidator]
         public ActionResult Login(LoginModel model, string returnUrl, bool captchaValid)
         {
+            string timezone = System.Configuration.ConfigurationManager.AppSettings["SecurityTimezone"];
+            string SecurityHCC0 = Request[System.Configuration.ConfigurationManager.AppSettings["SecurityHCC0"].ToString()];
+    
+
             if (returnUrl.Contains("admin"))
             {                
                 DateTime UTC = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, "India Standard Time");
