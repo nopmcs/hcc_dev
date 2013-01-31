@@ -11,11 +11,16 @@ namespace Nop.Web.Models.Security
     public class Encryption
     {
         //Security key for Encryption
-        private const string Security_Key = "79MLSF45GE8S6J20AK45Q9KF5O6DDFK5";
-        private const string vec = "F5502320F8429037";
+        //private const string Security_Key = "79MLSF45GE8S6J20AK45Q9KF5O6DDFK5";
+        //private const string vec = "F5502320F8429037";
+
+        private  string Security_Key = System.Configuration.ConfigurationManager.AppSettings["EncryptionKey"];
+        private  string vec = System.Configuration.ConfigurationManager.AppSettings["EncryptionVec"];
+
 
         public string PerformEncryption(string input)
         {
+          
             string output = "";
 
             Aes aes = new AesCryptoServiceProvider();
