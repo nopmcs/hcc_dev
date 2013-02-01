@@ -1,0 +1,2 @@
+DataProvider: sqlserver
+DataConnectionString: Data Source=tcp:s04.winhost.com;Initial Catalog=DB_53579_hcc;Integrated Security=False;User ID=DB_53579_hcc_user;Password=bgs@22163917;MultipleActiveResultSets=True
