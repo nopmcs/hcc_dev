@@ -108,7 +108,7 @@ UpgradeLog*.XML
 Presentation/Nop.Web/Plugins/
 
 # Thumbs
-Content/Images/Thumbs
+Content/Images/Thumbs/
 
 # Settings
 App_Data/Settings.txt
