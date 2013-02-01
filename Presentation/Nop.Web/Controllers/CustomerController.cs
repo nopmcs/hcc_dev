@@ -404,8 +404,13 @@ namespace Nop.Web.Controllers
                         return RedirectToRoute("HomePage");
                     }
 
-                    Encryption Encryption = new Encryption();
                     string cipher = Request[System.Configuration.ConfigurationManager.AppSettings["CIPHERTEXT"].ToString()];
+                    if (cipher == null)
+                    {
+                        return RedirectToRoute("HomePage");
+                    }
+
+                    Encryption Encryption = new Encryption();                    
                     if (Encryption.PerformEncryption(cipher) != System.Configuration.ConfigurationManager.AppSettings["VERIFYCIPHER"].ToString())
                     {
                         return RedirectToRoute("HomePage");
