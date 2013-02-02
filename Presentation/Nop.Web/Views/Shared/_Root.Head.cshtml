@@ -3,6 +3,7 @@
     var displayMiniProfiler = EngineContext.Current.Resolve<Nop.Core.Domain.StoreInformationSettings>().DisplayMiniProfilerInPublicStore;
     
     //resources
+    Html.AppendScriptParts("~/Scripts/slimbox2.js");
     Html.AppendCssFileParts("~/Content/smoothness/jquery-ui-1.8.17.custom.css");
     Html.AppendScriptParts("~/Scripts/public.ajaxcart.js");
     Html.AppendScriptParts("~/Scripts/public.common.js");
