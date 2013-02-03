@@ -261,6 +261,30 @@ namespace Nop.Web.Controllers
                     FullDescription = product.GetLocalized(x => x.FullDescription),
                     SeName = product.GetSeName(),
                 };
+
+                var pictures = _pictureService.GetPicturesByProductId(product.Id);
+                if (pictures.Count > 0)
+                {
+                    //default picture
+                    model.DefaultPictureModel = new PictureModel()
+                    {
+                        ImageUrl = _pictureService.GetPictureUrl(pictures.FirstOrDefault(), _mediaSettings.ProductDetailsPictureSize),
+                        FullSizeImageUrl = _pictureService.GetPictureUrl(pictures.FirstOrDefault()),
+                        Title = string.Format(_localizationService.GetResource("Media.Product.ImageLinkTitleFormat"), model.Name),
+                        AlternateText = string.Format(_localizationService.GetResource("Media.Product.ImageAlternateTextFormat"), model.Name),
+                    };
+                    //all pictures
+                    foreach (var picture in pictures)
+                    {
+                        model.PictureModels.Add(new PictureModel()
+                        {
+                            ImageUrl = _pictureService.GetPictureUrl(picture, _mediaSettings.ProductThumbPictureSizeOnProductDetailsPage),
+                            FullSizeImageUrl = _pictureService.GetPictureUrl(picture),
+                            Title = string.Format(_localizationService.GetResource("Media.Product.ImageLinkTitleFormat"), model.Name),
+                            AlternateText = string.Format(_localizationService.GetResource("Media.Product.ImageAlternateTextFormat"), model.Name),
+                        });
+                    }
+                }
                 //price
                 if (preparePriceModel)
                 {

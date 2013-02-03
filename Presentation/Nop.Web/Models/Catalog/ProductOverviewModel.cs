@@ -11,6 +11,7 @@ namespace Nop.Web.Models.Catalog
             ProductPrice = new ProductPriceModel();
             DefaultPictureModel = new PictureModel();
             SpecificationAttributeModels = new List<ProductSpecificationModel>();
+            PictureModels = new List<PictureModel>();
         }
 
         public string Name { get; set; }
@@ -25,6 +26,7 @@ namespace Nop.Web.Models.Catalog
         //specification attributes
         public IList<ProductSpecificationModel> SpecificationAttributeModels { get; set; }
 
+        public IList<PictureModel> PictureModels { get; set; }
 		#region Nested Classes
 
         public partial class ProductPriceModel : BaseNopModel

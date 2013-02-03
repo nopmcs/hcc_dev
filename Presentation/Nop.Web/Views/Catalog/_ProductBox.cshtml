@@ -17,6 +17,22 @@
 }
 
 <div class="product-item" data-productid="@Model.Id">
+    <div class="zoom">    
+            @if (Model.PictureModels.Count > 1)
+            {
+                for (int i = 0; i < Model.PictureModels.Count; i++)
+                {
+                    var picture = Model.PictureModels[i];
+                    if(i==0){
+                    <a href="@picture.FullSizeImageUrl" data-gallery="lightbox-@Model.Id" title="@Model.Name">[ + ]</a>
+                    } else {
+                    <a href="@picture.FullSizeImageUrl" data-gallery="lightbox-@Model.Id" title="@Model.Name" style="display:none">[ + ]</a>     
+                    }
+                }
+            } else {
+                    <a title="Best Grilling Recipes" data-gallery="lightbox-@Model.Id" href="@Model.DefaultPictureModel.FullSizeImageUrl">[ + ]</a>
+            }           
+    </div>
     <div class="buttons">
             @*<input type="button" value="@T("Products.Details")" class="button-1 product-box-detail-button" onclick="setLocation('@Url.RouteUrl("Product", new { SeName = Model.SeName })')" />*@
             @if (!Model.ProductPrice.DisableBuyButton)
@@ -31,9 +47,12 @@
         </a>
     </div>
     <h2 class="product-title">
-        @if (@Model.Name.Length > 20) { 
-            <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" title="@Model.Name" >@Model.Name.Substring(0,20)...</a>
-        } else {
+        @if (@Model.Name.Length > 20)
+        { 
+            <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" title="@Model.Name" >@Model.Name.Substring(0, 20)...</a>
+        }
+        else
+        {
             <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" title="@Model.Name" >@Model.Name</a>
         }
     </h2>
@@ -42,6 +61,7 @@
     </div>
     <div class="add-info">
         <div class="prices">
+            
             @if (!String.IsNullOrEmpty(Model.ProductPrice.OldPrice))
             {
                 <div class="old-product-price">
@@ -52,13 +72,7 @@
                 <span class="price">@Model.ProductPrice.Price</span>
             </div>
 
-
-
-            <div style="float:right">                
-                <a title="Best Grilling Recipes" data-gallery="lightbox-@Model.Id" href="@Model.DefaultPictureModel.FullSizeImageUrl">Zoom</a>
-                @*<a title="Best Grilling Recipes" data-gallery="lightbox-p" href="http://localhost:22744/content/images/thumbs/0000033_best-grilling-recipes.jpeg">
-                </a>*@
-            </div>
+            
         </div>
         
         @Html.Widget("productbox_add_info")
